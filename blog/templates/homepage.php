@@ -17,14 +17,11 @@
 
         <div class="news">
             <h3>
-                <?php echo htmlspecialchars($post['title']); ?>
-                <em>le <?php echo $post['frenchCreationDate']; ?></em>
+                <?= htmlspecialchars($post['title']); ?> //use of "short open tags" or "short eco tags" syntax
+                <em>le <?= $post['french_creation_date']; ?></em>
             </h3>
                 <p>
-                <?php
-                // we display the post content
-                echo nl2br(htmlspecialchars($post['content']));
-                ?>
+                <?= nl2br(htmlspecialchars($post['content'])); ?> // we display the post content 
                 <br/>
                 <em><a href="#">Commentaires</a></em>
             </p>

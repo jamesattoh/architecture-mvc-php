@@ -10,20 +10,19 @@
 
     // we retrieve the 5 last blog posts
         $statement = $database->query( //le retour d'une query est habituellement contenu dans la variable statement
-        "SELECT id, titre, contenu, DATE_FORMAT(date_creation, '%d/%m/%Y à %Hh%imin%ss') AS date_creation_fr FROM billets ORDER BY date_creation DESC LIMIT 0, 5"
+        "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%imin%ss') AS french_creation_date FROM posts ORDER BY creation_date DESC LIMIT 0, 5"
     );
 
     $posts = [];
 
     while($row = $statement ->fetch()) {
         $post = [
-            'title' => $row['titre'],
-            'content' => $row['contenu'],
-            'frenchCreationDate' => $row['date_creation_fr'],
+            'title' => $row['title'],
+            'content' => $row['content'],
+            'french_creation_date' => $row['french_creation_date'],
         ];   
 
         $posts[] = $post;
     }
     return $posts;
     }
-?>
