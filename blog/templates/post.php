@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Le blog de l'AVBN</title>
-        <link href="style.css" rel="stylesheet" />
-    </head>
  
-    <body>
+    <?php $title = "Le Blog de l'AVBN" ?>
+
+    <?php ob_start(); ?>
+
         <h1>Le super blog de l'AVBN !</h1>
         <p><a href="index.php">Retour à la liste des billets</a></p>
 
@@ -22,14 +18,31 @@
         </div>
  
         <h2>Commentaires</h2>
+
+        <form action="index.php?action=addComment&id=<?= $post['identifier'] ?>" method="post">
+            <div>
+                <label for="author">Auteur</label>
+                <input id="author" name="author" type="text" placeholder="Auteur">
+            </div>
+
+            <div>
+                <label for="comment">Commentaire</label>
+                <input id="comment" name="comment" type="text" placeholder="Commentaire">
+            </div>
+
+            <div>
+                <input type="submit">
+            </div>
+        </form>
  
         <?php
         foreach ($comments as $comment) {
         ?>
-        <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['french_creation_date'] ?></p>
-        <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+            <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['french_creation_date'] ?></p>
+            <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
         <?php
         }
         ?>
-    </body>
-</html>
+    <?php $content = ob_get_clean(); ?>
+
+    <?php require_once('templates/layout.php') ?>
