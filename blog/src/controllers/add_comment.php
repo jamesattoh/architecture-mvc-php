@@ -11,13 +11,13 @@
             $author = $input['author'];
             $comment = $input['comment'];
         } else {
-            die('les données du formulaires sont erronnées');
+            throw new Exception('les données du formulaires sont erronnées');
         }
 
         $success = createComment($post, $author, $comment);
 
         if(!$success) {
-            die('Impossible d\'ajouter le commentaire');
+            throw new Exception('Impossible d\'ajouter le commentaire');
         } else {
             header('Location:index.php?action=post&id=' . $post); //we redirect the user on the page where the post, we add the comment, is
         }
