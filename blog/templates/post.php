@@ -38,11 +38,11 @@
         <?php
         foreach ($comments as $comment) {
         ?>
-            <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['french_creation_date'] ?></p>
-            <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+            <p><strong><?= htmlspecialchars($comment->author) ?></strong> le <?= $comment->frenchCreationDate ?></p>
+            <p><?= nl2br(htmlspecialchars($comment->comment)) ?></p>
         <?php
         }
         ?>
     <?php $content = ob_get_clean(); ?>
 
-    <?php require_once('templates/layout.php') ?>
+    <?php require_once('layout.php') ?>

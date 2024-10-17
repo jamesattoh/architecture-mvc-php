@@ -1,6 +1,13 @@
 <?php 
     // src/model/comment.php
-    function getComments(string $post) //this function is used to get the comments from the database
+    class Comment  //we create ou class comment
+    {
+        public string $author;
+        public string $frenchCreationDate;
+        public string $comment;
+    }
+
+    function getComments(string $post): array //this function is used to get the comments from the database
     {
         $database = commentDbConnect();
         $statement = $database->prepare(
@@ -11,11 +18,12 @@
         $comments = [];
 
         while(($row = $statement->fetch())) { //a loop that continues until the $statement object's fetch() method returns a result line
-            $comment = [
-                'author' => $row['author'],
-                'comment' => $row['comment'],
-                'french_creation_date' => $row['french_creation_date'],
-            ];
+            $comment = new Comment(); //we create a new instance $comment of class Comment 
+            
+            $comment->author = $row['author'];
+            $comment->frenchCreationDate = $row['french_creation_date'];
+            $comment->comment =  $row['comment'];
+            
             $comments[] = $comment; 
         }
         return $comments;
