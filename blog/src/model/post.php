@@ -5,7 +5,7 @@ class Post
     public string $title;
     public string $content;
     public string $frenchCreationDate;
-    public int $identifier;
+    public string $identifier;
 }
 
 function getPosts() {
@@ -32,3 +32,31 @@ function getPosts() {
     }
     return $posts;
     }
+
+function getPost($identifier): Post { //This function will return an element of type Post
+    $database = dbConnect();
+    
+    $statement = $database->prepare(
+        "SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %Hh%imin%ss') AS french_creation_date FROM posts WHERE id = ?"
+    );
+    $statement->execute([$identifier]);
+    
+    $row = $statement->fetch();
+    
+    $post = new Post();
+    
+    $post->title = $row['title'];
+    $post->frenchCreationDate = $row['french_creation_date'];
+    $post->content = $row['content'];
+    $post->identifier = $row['id'];
+
+    
+    return $post;
+}
+
+function dbConnect()
+{
+    $database = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+
+    return $database;
+}
