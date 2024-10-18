@@ -2,7 +2,7 @@
     // src/model/comment.php
     class Comment  //we create ou class comment
     {
-        public string $author;
+        public string $author;                //we create the properties of an element of our class
         public string $frenchCreationDate;
         public string $comment;
     }

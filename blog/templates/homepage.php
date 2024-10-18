@@ -8,17 +8,17 @@
    foreach($posts as $post) {
    ?>
 
-   <div class="news">
-      <h3>
-         <?= htmlspecialchars($post->title); ?> <!-- the use of "short open tags" or "short eco tags" syntax -->
-         <em>le <?= $post->frenchCreationDate; ?></em>
-      </h3>
-         <p>
-         <?= nl2br(htmlspecialchars($post->content)); ?> <!-- // we display the post content  -->
-         <br/>
-         <em><a href="index.php?action=post&id=<?= urlencode($post->identifier) ?>">Commentaires</a></em> <!-- urlencode is to encode a string (character string) in url && index.php?action=post&id= because now iit's our rooter which manage the ids -->
-         </p>
-   </div>
+      <div class="news">
+         <h3>
+            <?= htmlspecialchars($post->title); ?> <!-- the use of "short open tags" or "short eco tags" syntax -->
+            <em>le <?= $post->frenchCreationDate; ?></em>
+         </h3>
+            <p>
+            <?= nl2br(htmlspecialchars($post->content)); ?> <!-- // we display the post content  -->
+            <br/>
+            <em><a href="index.php?action=post&id=<?= urlencode($post->identifier) ?>">Commentaires</a></em> <!-- urlencode is to encode a string (character string) in url && index.php?action=post&id= because now iit's our rooter which manage the ids -->
+            </p>
+      </div>
    <?php
    }// tthe end of the posts loop
    ?>
