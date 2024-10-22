@@ -7,16 +7,15 @@ require_once('src/model/post.php'); //require_once is to include no more than on
 require_once('src/model/comment.php');
 
 function post(string $identifier)
-{
-	$postRepository = new PostRepository(); //in order to use something in a controller, it must be created or its type must be eextracted pr specified
-	$commentRepository = new CommentRepository();
+{	
+	$connection = new DatabaseConnection();
 
-	$postRepository->connection = new DatabaseConnection(); //to initialize the connection property with a new instance of DatabaseConnection
-
+	$postRepository = new PostRepository(); //in order to use something in a controller, it must be created or its type must be eextracted or specified
+	$postRepository->connection = $connection; //to initialize the connection property with a new instance of DatabaseConnection
 	$post = $postRepository->getPost($identifier);
 
-	$commentRepository->connection = new DatabaseConnection();
-	
+	$commentRepository = new CommentRepository();
+	$commentRepository->connection = $connection;
 	$comments = $commentRepository->getComments($identifier);
 
 	require('templates/post.php');
