@@ -6,7 +6,7 @@
 
 <h2>Modification du commentaire</h2>
 
-<form action="index.php?action=updateComment&id=<?= $comment->identifier ?>">
+<form action="index.php?action=updateComment&id=<?= $comment->identifier ?> " method="post">
     <div>
         <label for="author">Auteur</label>
         <input id="author" name="author" type="text" value="<?= htmlspecialchars($comment->author)?>">
@@ -18,7 +18,7 @@
     </div>
 
     <div>
-        <input type="submit">
+        <input type="submit" />
     </div>
 </form>
 
