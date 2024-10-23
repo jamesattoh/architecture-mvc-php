@@ -4,7 +4,7 @@
     require_once('src/lib/database.php');
 
     use Application\Lib\Database\DatabaseConnection;
-    
+
     class Post 
     {
         public string $title;
@@ -29,9 +29,7 @@
             $statement->execute([$identifier]);
             
             $row = $statement->fetch();
-            
             $post = new Post();
-            
             $post->title = $row['title'];
             $post->frenchCreationDate = $row['french_creation_date'];
             $post->content = $row['content'];
@@ -50,7 +48,7 @@
         
             $posts = [];
         
-            while($row = $statement ->fetch()) {
+            while(($row = $statement ->fetch())) {
                 $post = new Post();
         
                 $post->title = $row['title'];

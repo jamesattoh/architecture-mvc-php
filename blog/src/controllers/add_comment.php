@@ -29,7 +29,7 @@
             if(!$success) {
                 throw new \Exception('Impossible d\'ajouter le commentaire');
             } else {
-                header('Location:index.php?action=post&id=' . $post); //we redirect the user on the page where the post, we add the comment, is
+                header('Location: index.php?action=post&id=' . $post); //we redirect the user on the page where the post, we add the comment, is
             }
         }
     }
